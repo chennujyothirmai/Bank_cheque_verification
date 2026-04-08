@@ -1,25 +1,10 @@
-"""
-URL configuration for chequeprojet project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from users import views as uviews
 from admins import views as adviews
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,14 +17,7 @@ urlpatterns = [
     path("prediction/", uviews.prediction, name="prediction"),
     path("model_evaluation/", uviews.model_evaluation, name="model_evaluation"),
 
-
- 
-
-
-
-
-
-    # ==================== ADMIN VIEWS ====================
+    # Admin
     path("admin-login/", adviews.adminlogin, name="adminlogin"),
     path("admin-home/", adviews.adminhome, name="adminhome"),
     path("admin-logout/", adviews.adminlogout, name="adminlogout"),
@@ -48,12 +26,12 @@ urlpatterns = [
     path('block-user/<int:user_id>/', adviews.block_user, name='block_user'),
     path('unblock-user/<int:user_id>/', adviews.unblock_user, name='unblock_user'),
     path('delete-user/<int:user_id>/', adviews.delete_user, name='delete_user'),
+
+    # Media and Static serving FIX for Render
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]
 
-from django.views.static import serve
-import re
-
-urlpatterns += [
-    path(r'media/(?P<path>.*)', serve, {'document_root': settings.MEDIA_ROOT}),
-    path(r'static/(?P<path>.*)', serve, {'document_root': settings.STATIC_ROOT}),
-]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
