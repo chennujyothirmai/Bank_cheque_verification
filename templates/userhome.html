@@ -58,48 +58,6 @@ body {
 .navbar ul li a:hover { background: rgba(0,0,0,0.05); }
 .navbar ul li a.active { background: rgba(0,122,255,0.15); color:#007aff; font-weight:600; }
 
-@media (max-width: 768px) {
-    .navbar {
-        position: fixed;
-        bottom: 0;
-        top: auto;
-        left: 0;
-        right: 0;
-        padding: 10px 5px;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(25px);
-        border-top: 1px solid rgba(0,0,0,0.1);
-        border-bottom: none;
-        display: flex;
-        justify-content: center;
-        z-index: 2000;
-        box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
-    }
-    .navbar-brand { display: none; }
-    .navbar ul { 
-        width: 100%; 
-        justify-content: space-evenly; 
-        gap: 0; 
-    }
-    .navbar ul li a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 3px;
-        font-size: 11px;
-        padding: 5px 0;
-        border-radius: 0;
-        min-width: 65px;
-    }
-    .navbar ul li a i { font-size: 1.4rem; }
-    .navbar ul li a.active { background: transparent; color: #007aff; border-top: 3px solid #007aff; }
-    
-    .content { padding: 30px 15px 100px 15px !important; }
-    .glass-card { padding: 25px 15px; border-radius: 20px; }
-    .glass-card h1 { font-size: 1.5rem; text-align: center; }
-    footer { display: none; }
-}
-
 /* CONTENT */
 .content {
     padding: 100px 60px;
@@ -196,9 +154,10 @@ footer {
     <div class="navbar-brand">🏦 Bank Cheque Verification</div>
     <ul>
         <li><a href="{%url 'userhome'%}" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
-        <li><a href="{%url 'ChequeSamples'%}"><i class="fa-solid fa-chart-line"></i> Samples</a></li>
-        <li><a href="{%url 'model_evaluation'%}"><i class="fa-solid fa-microscope"></i> Eval</a></li>
-        <li><a href="{%url 'prediction'%}"><i class="fa-solid fa-display"></i> Verify</a></li>
+        <li><a href="{%url 'ChequeSamples'%}"><i class="fa-solid fa-chart-line"></i> Cheques Samples</a></li>
+        
+        <li><a href="{%url 'model_evaluation'%}"><i class="fa-solid fa-microscope"></i> Model Evaluation</a></li>
+        <li><a href="{%url 'prediction'%}"><i class="fa-solid fa-display"></i> Prediction</a></li>
         <li><a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
     </ul>
 </nav>

@@ -59,33 +59,6 @@ body {
 .navbar ul li a:hover { background:rgba(0,0,0,0.05); }
 .navbar ul li a.active { background:rgba(0,122,255,0.15); color:#007aff; font-weight:600; }
 
-.navbar ul li a.active { background:rgba(0,122,255,0.15); color:#007aff; font-weight:600; }
-
-@media (max-width: 600px) {
-    .navbar {
-        position: sticky; top: 0; left: 0; right: 0;
-        flex-direction: column;
-        padding: 10px 0;
-        z-index: 2000;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    .navbar-brand { display: block; font-size: 1rem; margin-bottom: 8px; text-align: center; }
-    .navbar ul { display: grid; grid-template-columns: repeat(5, 1fr); width: 100%; border-top: 1px solid #efefef; }
-    .navbar ul li a { display: flex; flex-direction: column; font-size: 0.6rem; padding: 8px 0; gap: 3px; }
-    .navbar ul li a i { font-size: 1.1rem; }
-    .navbar ul li a.active { background: #f0f7ff; border-bottom: 3px solid #007aff; border-top: none; }
-
-    .two-col { display: block !important; padding: 10px !important; width: 100% !important; overflow: hidden; margin: 0 !important; }
-    .model-card { width: 100% !important; padding: 15px !important; margin-bottom: 15px !important; border-radius: 18px !important; }
-    .metrics-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
-    .metric-box { padding: 10px !important; }
-    .metric-label { font-size: 0.8rem !important; }
-    .metric-value { font-size: 1.1rem !important; }
-    .evaluation-img { width: 100% !important; height: auto !important; max-height: none !important; border-radius: 10px; }
-    .overlay { padding-bottom: 20px; }
-    footer { padding-bottom: 20px; font-size: 0.7rem; }
-}
-
 /* MAIN TITLE */
 .section-title {
     text-align:center;
@@ -190,10 +163,10 @@ footer {
     <div class="navbar-brand">🏦 Bank Cheque Verification</div>
     <ul>
         <li><a href="{%url 'userhome'%}"><i class="fa-solid fa-house"></i> Home</a></li>
-        <li><a href="{%url 'ChequeSamples'%}"><i class="fa-solid fa-chart-line"></i> Samples</a></li>
-        <li><a href="{%url 'model_evaluation'%}"  class="active"><i class="fa-solid fa-microscope"></i> Eval</a></li>
-        <li><a href="{%url 'prediction'%}"><i class="fa-solid fa-display"></i> Verify</a></li>
-        <li><a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Out</a></li>
+        <li><a href="{%url 'ChequeSamples'%}"><i class="fa-solid fa-chart-line"></i> Cheques Samples</a></li>
+        <li><a href="{%url 'model_evaluation'%}"  class="active"><i class="fa-solid fa-microscope"></i> Model Evaluation</a></li>
+        <li><a href="{%url 'prediction'%}"><i class="fa-solid fa-display"></i> Prediction</a></li>
+        <li><a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
     </ul>
 </nav>
 

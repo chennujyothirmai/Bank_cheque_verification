@@ -22,11 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-3=*_0@c4olf@l-4=b_65)poduo6^q5a@r)gfo$(+q%dmjyetag'
 
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
-CSRF_TRUSTED_ORIGINS = ['https://cheque-backend-ykbu.onrender.com']
 
 
 # Application definition
@@ -44,7 +43,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,16 +123,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR ,'static')]
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Production Static/Media Config
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-if not os.path.exists(STATIC_ROOT):
-    os.makedirs(STATIC_ROOT, exist_ok=True)
-
-# Important for Render to avoid relative path confusion
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-if not os.path.exists(MEDIA_ROOT):
-    os.makedirs(MEDIA_ROOT, exist_ok=True)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
