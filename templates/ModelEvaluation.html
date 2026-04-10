@@ -211,10 +211,10 @@ footer {
         </div>
 
         <div class="cm-title">Confusion Matrix</div>
-        <img src="{{ sig_cm }}" class="evaluation-img">
+        <img src="{% static 'evaluation/Signature_Confusion_Matrix.png' %}" class="evaluation-img">
 
         <div class="cm-title">Metrics Visualization</div>
-        <img src="{{ sig_bar }}" class="evaluation-img">
+        <img src="{% static 'evaluation/Signature_Metrics.png' %}" class="evaluation-img">
     </div>
 
 
@@ -231,18 +231,16 @@ footer {
         </div>
 
         <div class="cm-title">Confusion Matrix</div>
-        <img src="{{ digit_cm }}" class="evaluation-img">
+        <img src="{% static 'evaluation/Digit_CNN_Confusion_Matrix.png' %}" class="evaluation-img">
 
         <div class="cm-title">Metrics Visualization</div>
-        <img src="{{ digit_bar }}" class="evaluation-img">
+        <img src="{% static 'evaluation/Digit_CNN_Metrics.png' %}" class="evaluation-img">
     </div>
 
 </div>
 
 
-<footer>
 <footer>   © 2026 Bank Cheque Verification System | Powered by Gemini AI</footer>
-</footer>
 
 </div>
 </body>
