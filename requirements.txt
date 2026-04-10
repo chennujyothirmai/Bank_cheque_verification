@@ -1,8 +1,6 @@
 google-generativeai
 django
 pillow
-torch --index-url https://download.pytorch.org/whl/cpu
-torchvision --index-url https://download.pytorch.org/whl/cpu
 opencv-python-headless
 numpy
 joblib

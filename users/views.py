@@ -397,11 +397,15 @@ def model_evaluation(request):
     # ----------------------------------------------------------------------
     # SECONDARY: If cache missing, run a fast subset evaluation
     # ----------------------------------------------------------------------
-    import joblib
-    import numpy as np
-    import torch
-    from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-    from torchvision import datasets, transforms
+    try:
+        import joblib
+        import numpy as np
+        import torch
+        from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+        from torchvision import datasets, transforms
+    except ImportError:
+        # If torch is missing (e.g. on Render Free tier), use the fallback hardcoded metrics
+        raise Exception("AI Libraries not available in this environment")
 
     try:
         # Signature Setup
@@ -430,7 +434,7 @@ def model_evaluation(request):
         digit_model = ChequeDigitCNN()
         digit_model.load_state_dict(torch.load(os.path.join(settings.MEDIA_ROOT, "digit_cnn.pth"), map_location="cpu"))
         digit_model.eval()
-        test_dataset = datasets.MNIST(os.path.join(settings.MEDIA_ROOT, "minist"), train=False, download=False, transform=transforms.Compose([transforms.Grayscale(), transforms.Resize((28, 28)), transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))]))
+        test_dataset = datasets.MNIST(os.path.join(settings.MEDIA_ROOT, "minist"), train=False, download=False, transform=transforms.Compose([transforms.Grayscale(), transforms.Resize((28, 28)), transforms.ToTensor(), transforms.Normalize((0.5,), (1.5,))]))
         test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=32, shuffle=False)
         y_true, y_pred = [], []
         with torch.no_grad():
