@@ -419,8 +419,12 @@ def model_evaluation(request):
         from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
         from torchvision import datasets, transforms
     except ImportError:
-        # If torch is missing (e.g. on Render Free tier), use the fallback hardcoded metrics
-        raise Exception("AI Libraries not available in this environment")
+        # Graceful fallback for environments without heavy AI libraries (like Render Free Tier)
+        return render(request, "ModelEvaluation.html", {
+            "error_message": "AI Evaluation models are only available on the local version due to cloud memory limits.",
+            # Provide empty charts or mock data so page doesn't break
+            "sig_cm": "", "sig_bar": "", "digit_cm": "", "digit_bar": ""
+        })
 
     try:
         # Signature Setup
