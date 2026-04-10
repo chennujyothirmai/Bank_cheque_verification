@@ -121,7 +121,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR ,'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Use Whitenoise for static files only in production (on Render)
+# Robust Static Serving for Render
+WHITENOISE_USE_FINDERS = True
 if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
