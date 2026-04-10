@@ -1,19 +1,34 @@
 import os
 import json
 
+import cv2
+import joblib
+import matplotlib
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from PIL import Image
-# Heavy imports moved inside functions for memory efficiency on Render
-# import cv2, joblib, torch, torchvision, sklearn
+from sklearn.metrics import (
+    accuracy_score,
+    confusion_matrix,
+    f1_score,
+    precision_score,
+    recall_score,
+)
+from torchvision import datasets, transforms
+# Global imports restored for local runserver stability
 
 from .forms import ImageUploadForm, RegistrationForm
 from .models import UserAccount
 from .utils.final_pipeline import process_cheque
 from .utils.gemini_extract import extract_cheque_info
 
-# matplotlib.use("Agg") moved inside chart functions
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt  # noqa: E402
 
 
 def basefunction(request):

@@ -1,30 +1,22 @@
-# IDE
-.vscode/
-.idea/
+# Ignore large datasets but KEEP showcase samples and evaluation graphs
+media/cheque_data/
+media/digits_dataset/
+media/minist/
+media/mnist/
+media/signature_dataset/
+media/uploaded/
+media/segmented_regions/
 
-# Environment
-venv/
-env/
-.env
-
-# Python
-__pycache__/
-*.pyc
-
-# Database
-db.sqlite3
-
-# ALL Media Folders (Ignore everything by default)
-media/*
-
-# EXCEPT for these essential ones (Whitelist)
+# Specific exceptions: Allow showcase and graphs
 !media/samples_showcase/
 !media/evaluation/
-!media/signature_model/
-!media/digit_cnn.pth
 
-# Also ignore other specific heavy folders if they exist
-cheque_data/
-minist/
-mnist/
-digits_dataset/
+# Standard stuff
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+db.sqlite3
+staticfiles/
+.env
