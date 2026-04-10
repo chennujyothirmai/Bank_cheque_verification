@@ -5,9 +5,28 @@ import cv2
 import joblib
 import matplotlib
 import numpy as np
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
+
+try:
+    import torch
+    import torch.nn as nn
+    import torch.nn.functional as F
+    from torchvision import datasets, transforms
+except ImportError:
+    torch = None
+    F = None
+    # Create a dummy Module class so ChequeDigitCNN definition doesn't fail
+    class MockModule:
+        def __init__(self, *args, **kwargs): pass
+        def parameters(self): return []
+        def to(self, *args, **kwargs): return self
+        def eval(self): return self
+    
+    class MockNN:
+        Module = MockModule
+    nn = MockNN
+    transforms = None
+    datasets = None
+
 from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import redirect, render
@@ -19,8 +38,7 @@ from sklearn.metrics import (
     precision_score,
     recall_score,
 )
-from torchvision import datasets, transforms
-# Global imports restored for local runserver stability
+# Global imports made robust for both local and cloud environments
 
 from .forms import ImageUploadForm, RegistrationForm
 from .models import UserAccount
