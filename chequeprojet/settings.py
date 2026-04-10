@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3=*_0@c4olf@l-4=b_65)poduo6^q5a@r)gfo$(+q%dmjyetag
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['bank-cheque-verification.onrender.com', 'localhost', '127.0.0.1', '*']
 
 
 # Application definition
