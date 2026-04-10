@@ -1,10 +1,13 @@
 google-generativeai
 django
 pillow
-torch
-torchvision
-opencv-python
+torch --index-url https://download.pytorch.org/whl/cpu
+torchvision --index-url https://download.pytorch.org/whl/cpu
+opencv-python-headless
 numpy
 joblib
 scikit-learn
 matplotlib
+gunicorn
+whitenoise
+python-dotenv

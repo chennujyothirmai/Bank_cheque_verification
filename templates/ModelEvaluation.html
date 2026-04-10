@@ -152,6 +152,24 @@ footer {
     padding:20px;
     font-size:0.9rem;
 }
+    /* MOBILE RESPONSIVE FIXES */
+    @media (max-width: 768px) {
+        html, body { overflow-x: hidden; width: 100vw; max-width: 100vw; }
+        .navbar { flex-direction: column; padding: 12px 10px; gap: 12px; }
+        .navbar-brand { font-size: 1.25rem !important; }
+        .navbar ul { flex-wrap: nowrap !important; justify-content: space-evenly; width: 100%; gap: 0; padding: 0; margin: 0; }
+        .navbar ul li a { font-size: 0 !important; padding: 8px 12px !important; }
+        .navbar ul li a i { font-size: 1.5rem !important; display: block; }
+        .two-col { padding: 10px; margin: 10px auto; width: 100%; box-sizing: border-box; }
+        .model-card { padding: 20px; width: 100%; box-sizing: border-box; }
+        .section-title { font-size: 1.6rem !important; margin-top: 20px !important; padding: 0 10px; }
+        .model-title { font-size: 1.4rem !important; margin-bottom: 20px !important; }
+        .metrics-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+        .metric-box { padding: 10px !important; }
+        .metric-label { font-size: 0.85rem !important; }
+        .metric-value { font-size: 1.2rem !important; margin-top: 4px !important; }
+        .evaluation-img { width: 100% !important; max-width: 100% !important; object-fit: contain; }
+    }
 </style>
 </head>
 

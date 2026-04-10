@@ -1,33 +1,19 @@
 import os
 import json
 
-import cv2
-import joblib
-import matplotlib
-import numpy as np
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
 from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from PIL import Image
-from sklearn.metrics import (
-    accuracy_score,
-    confusion_matrix,
-    f1_score,
-    precision_score,
-    recall_score,
-)
-from torchvision import datasets, transforms
+# Heavy imports moved inside functions for memory efficiency on Render
+# import cv2, joblib, torch, torchvision, sklearn
 
 from .forms import ImageUploadForm, RegistrationForm
 from .models import UserAccount
 from .utils.final_pipeline import process_cheque
 from .utils.gemini_extract import extract_cheque_info
 
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt  # noqa: E402
+# matplotlib.use("Agg") moved inside chart functions
 
 
 def basefunction(request):
@@ -318,6 +304,8 @@ class ChequeDigitCNN(nn.Module):
 #  SIFT EXTRACTION
 # ============================================================
 def extract_sift_features(image_path, vector_size=128):
+    import cv2
+    import numpy as np
     img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     if img is None:
         return None
@@ -341,7 +329,10 @@ def extract_sift_features(image_path, vector_size=128):
 # ============================================================
 #  SAVE CONFUSION MATRIX
 # ============================================================
-def save_confusion_matrix(y_true, y_pred, name):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from sklearn.metrics import confusion_matrix
     cm = confusion_matrix(y_true, y_pred)
 
     plt.figure(figsize=(6, 5))
@@ -369,6 +360,9 @@ def save_confusion_matrix(y_true, y_pred, name):
 #  SAVE BAR CHART
 # ============================================================
 def save_bar_chart(metrics_dict, name):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
     labels = list(metrics_dict.keys())
     values = list(metrics_dict.values())
 
@@ -403,6 +397,12 @@ def model_evaluation(request):
     # ----------------------------------------------------------------------
     # SECONDARY: If cache missing, run a fast subset evaluation
     # ----------------------------------------------------------------------
+    import joblib
+    import numpy as np
+    import torch
+    from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+    from torchvision import datasets, transforms
+
     try:
         # Signature Setup
         sig_root = os.path.join(settings.MEDIA_ROOT, "signature_dataset/Dataset_Signature_Final/dataset1")
